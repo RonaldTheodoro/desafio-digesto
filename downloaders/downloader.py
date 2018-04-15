@@ -4,7 +4,6 @@ from collections import namedtuple
 import requests
 
 from bs4 import BeautifulSoup
-from config import Config
 
 
 class Downloader(ABC):
@@ -12,9 +11,12 @@ class Downloader(ABC):
     site = None
     html = None
 
-    def __init__(self):
-        self.response = requests.get(Config.SITES[self.site])
+    def __init__(self, url):
+        self.get_response(url)
         self.get_html()
+
+    def get_response(self, url):
+        self.response = requests.get(url)
 
     def get_html(self):
         """Get the html page"""
@@ -51,16 +53,13 @@ class Downloader(ABC):
         pass
 
 
-Machine = namedtuple(
-    'Machine',
-    [
-        'site',
-        'name',
-        'cpus',
-        'memory',
-        'storage',
-        'bandwidth',
-        'price_month',
-        'price_hour'
-    ]
-)
+Machine = namedtuple('Machine', [
+    'site',
+    'name',
+    'cpus',
+    'memory',
+    'storage',
+    'bandwidth',
+    'price_month',
+    'price_hour'
+])

@@ -9,5 +9,11 @@ class Config:
     SITES = {
         'DIGITALOCEAN': config('DIGITALOCEAN'),
         'VULTR': config('VULTR'),
-        'PACKET': config('PACKET'),
+        'PACKET': {
+            'TINY': config('PACKET_TINY'),
+            'COMPUTE': config('PACKET_COMPUTE'),
+            'MEMORY': config('PACKET_MEMORY'),
+            'STORAGE': config('PACKET_STORAGE'),
+            'ACCELERATOR': config('PACKET_ACCELERATOR'),
+        },
     }
