@@ -7,7 +7,7 @@ class VultrPriceTable(Downloader):
 
     def get_info(self):
         elements = self.html.find_all('a', {'class': 'package'})
-        return map(self.get_machine, elements)
+        return list(map(self.get_machine, elements))
 
     def get_machine(self, element):
         """Get one machine"""
