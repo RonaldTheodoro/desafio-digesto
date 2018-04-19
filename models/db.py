@@ -21,4 +21,6 @@ def save_machine_bulk(machine):
     session.bulk_save_objects(machine)
     session.commit()
 
-    
+
+def get_all_machines():
+    return session.query(Machine).all()
