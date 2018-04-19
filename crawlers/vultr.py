@@ -1,7 +1,7 @@
-from .downloader import Downloader, Machine
+from .crawler import Crawler, Machine
 
 
-class VultrPriceTable(Downloader):
+class VultrPriceTable(Crawler):
     """Get price info from Vultr"""
     site = 'VULTR'
 

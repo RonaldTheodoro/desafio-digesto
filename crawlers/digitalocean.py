@@ -1,9 +1,9 @@
 import re
 
-from .downloader import Downloader, Machine
+from .crawler import Crawler, Machine
 
 
-class DigitalOceanPriceTable(Downloader):
+class DigitalOceanPriceTable(Crawler):
     """Get price info from DigitalOcean"""
     site = 'DIGITALOCEAN'
 

@@ -1,6 +1,6 @@
 from itertools import chain
 
-import downloaders
+import crawlers
 from config import Config
 
 
@@ -39,8 +39,8 @@ class Dispatcher:
 
     def vultr_factory(self, url):
         """Return an VultrPriceTable instance"""
-        return downloaders.VultrPriceTable(url)
+        return crawlers.VultrPriceTable(url)
 
     def digitalocean_factory(self, url):
         """Return an DigitalOceanPriceTable instance"""
-        return downloaders.DigitalOceanPriceTable(url)
+        return crawlers.DigitalOceanPriceTable(url)

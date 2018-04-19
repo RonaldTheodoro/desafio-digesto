@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Downloader(ABC):
+class Crawler(ABC):
     """Get html from site"""
     site = None
     html = None
