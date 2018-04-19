@@ -7,7 +7,7 @@ from .models import Base, Machine
 
 
 class Database:
-    engine = create_engine(Config.DATABASE, echo=True)
+    engine = create_engine(Config.DATABASE, echo=False)
     Base.metadata.bind = engine
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -18,3 +18,12 @@ class Database:
 
     def get_all_machines(self):
         return self.session.query(Machine).all()
+
+    def delete_all(self):
+        rows = 0
+        try:
+            rows = self.session.query(Machine).delete()
+            self.session.commit()
+        except:
+            self.session.rollback()
+        return rows
