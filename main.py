@@ -47,7 +47,7 @@ if __name__ == '__main__':
     machines = []
 
     if args.down:
-        dispatcher = Dispatcher(args.services)
+        dispatcher = Dispatcher(args.service)
         machines = dispatcher.get_machines()
 
     if args.save:
