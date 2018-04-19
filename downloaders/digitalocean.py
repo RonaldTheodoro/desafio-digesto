@@ -23,6 +23,7 @@ class DigitalOceanPriceTable(Downloader):
         return machines
 
     def create_table(self, title, table):
+        """Get rows from html tables"""
         rows = table.tbody.find_all('tr')
         tables = map(self.create_row, rows)
         machines = []
@@ -32,19 +33,23 @@ class DigitalOceanPriceTable(Downloader):
         return machines
 
     def create_row(self, row):
+        """Get all infos from html and return a object"""
         line_elements = row.find_all('td')
-        machine = self.get_price(line_elements[4].text)
-        machine.site = self.site
-        machine.memory = line_elements[0].text
-        machine.cpus = line_elements[1].text
-        machine.storage = line_elements[2].text
-        machine.bandwidth = line_elements[3].text
-        return machine
+        memory = line_elements[0].text
+        cpus = line_elements[1].text
+        storage = line_elements[2].text
+        bandwidth = line_elements[3].text
+        price_month, price_hour = self.get_price(line_elements[4].text)
+        return self.get_machine_obj(
+            memory=memory,
+            cpus=cpus,
+            storage=storage,
+            bandwidth=bandwidth,
+            price_month=price_month,
+            price_hour=price_hour
+        )
 
     def get_price(self, price):
+        """Get the price using regex"""
         m = re.search(r'\$(\d+)/mo  \$(\d\.\d+)/hr', price)
-        price_month, price_hour = m.groups()
-        machine = Machine()
-        machine.price_month = price_month
-        machine.price_hour = price_hour
-        return machine
+        return m.groups()
