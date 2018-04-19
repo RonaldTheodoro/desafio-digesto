@@ -9,33 +9,33 @@ from models.db import Database
 def parser_args():
     """Define cmd arguments"""
     parser = ArgumentParser(
-        description='A simple tool for get the price from cloud services'
+        description='Uma simples ferramenta para conseguir o preço de sites de cloud service'
     )
     parser.add_argument(
         '--service',
         default='all',
         choices=['vultr', 'digitalocean'],
-        help='Choice an individual service to get the data'
+        help='Selecione um site em expecifico'
     )
     parser.add_argument(
         '--down',
         action='store_true',
-        help='Download registers'
+        help='Baixar os registros'
     )
     parser.add_argument(
         '--save',
         action='store_true',
-        help='Save registers in database'
+        help='Salva os registros no banco'
     )
     parser.add_argument(
         '--show',
         action='store_true',
-        help='Show registers in database'
+        help='Mostra os registros salvos'
     )
     parser.add_argument(
         '--delete',
         action='store_true',
-        help='Delete all registers in database'
+        help='Exclui todos os registros'
     )
 
     return parser.parse_args()
