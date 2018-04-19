@@ -10,8 +10,6 @@ class Dispatcher:
 
     def __init__(self, services):
         self.select_services(services)
-        for machine in self.get_machines():
-            print(machine.show_machine_info())
 
     def select_services(self, services):
         """Select which crawlers will be executed"""
