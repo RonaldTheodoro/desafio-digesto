@@ -7,12 +7,12 @@ from models.db import Database
 
 
 def parser_args():
+    """Define cmd arguments"""
     parser = ArgumentParser(
         description='A simple tool for get the price from cloud services'
     )
     parser.add_argument(
-        '-s',
-        '--services',
+        '--service',
         default='all',
         choices=['vultr', 'digitalocean'],
         help='Choice an individual service to get the data'
