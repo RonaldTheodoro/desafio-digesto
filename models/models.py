@@ -47,5 +47,5 @@ class Machine(Base):
 
 
 
-engine = create_engine(Config.DATABASE, echo=True)
+engine = create_engine(Config.DATABASE, echo=False)
 Base.metadata.create_all(bind=engine)
