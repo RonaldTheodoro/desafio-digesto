@@ -1,7 +1,25 @@
 import re
 
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
 
-class Machine:
+from config import Config
+
+
+Base = declarative_base()
+
+
+class Machine(Base):
+    __tablename__ = 'machine'
+    id = Column('id', Integer, primary_key=True)
+    site = Column('site', String(50))
+    name = Column('name', String(50))
+    cpus = Column('cpus', String(50))
+    memory = Column('memory', String(50))
+    storage = Column('storage', String(50))
+    bandwidth = Column('bandwidth', String(50))
+    price_month = Column('price_month', String(50))
+    price_hour = Column('price_hour', String(50))
 
     def __init__(self, site='', name='', cpus='', memory='', storage='', bandwidth='', price_month='', price_hour=''):
         self.site = self.clean_field(site)
@@ -26,3 +44,8 @@ class Machine:
     def clean_field(self, field):
         """Remove whitespaces"""
         return re.sub(r'\s+', ' ', field).strip()
+
+
+
+engine = create_engine(Config.DATABASE, echo=True)
+Base.metadata.create_all(bind=engine)
