@@ -5,6 +5,7 @@ from config import Config
 
 
 class Dispatcher:
+    """Call crawlers class"""
     factories = []
 
     def __init__(self, services):
@@ -13,6 +14,7 @@ class Dispatcher:
             print(machine.show_machine_info())
 
     def select_services(self, services):
+        """Select which crawlers will be executed"""
         if services == 'all':
             self.add_instance(self.vultr_factory(Config.SITES['VULTR']))
             self.add_instance(
