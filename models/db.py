@@ -6,21 +6,15 @@ from config import Config
 from .models import Base, Machine
 
 
-engine = create_engine(Config.DATABASE, echo=True)
-Base.metadata.bind = engine
-Session = sessionmaker(bind=engine)
-session = Session()
+class Database:
+    engine = create_engine(Config.DATABASE, echo=True)
+    Base.metadata.bind = engine
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
+    def save_machine_bulk(self, machine):
+        self.session.bulk_save_objects(machine)
+        self.session.commit()
 
-def save_machine(machine):
-    session.add(machine)
-    session.commit()
-
-
-def save_machine_bulk(machine):
-    session.bulk_save_objects(machine)
-    session.commit()
-
-
-def get_all_machines():
-    return session.query(Machine).all()
+    def get_all_machines(self):
+        return self.session.query(Machine).all()
